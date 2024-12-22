@@ -54,8 +54,16 @@ for image_path in args.image:
 image_str += "\n};\n\n"
 index_to_str += f"\t\"Unknow\"\n"
 
+file_name = "images.h"
+header_guard_name = file_name.upper().replace(".", "_")
+
+print(f"Generate {file_name}")
+
 file_header = open("images.h", "w")
+file_header.write(f"\n#ifndef {header_guard_name}\n")
+file_header.write(f"#define {header_guard_name}\n")
 file_header.write(image_str)
 file_header.write(define_str)
 file_header.write(index_to_str)
+file_header.write(f"\n#endif /* {header_guard_name} */\n")
 file_header.close()

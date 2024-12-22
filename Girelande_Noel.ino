@@ -1,6 +1,8 @@
 
 #include <Adafruit_NeoPixel.h>
+
 #include "images.h"
+#include "screen_sequence.h"
 
 #define CONTOUR_PIN        6
 #define CONTOUR_NUMPIXELS 144
@@ -49,41 +51,8 @@ void loop() {
 void run_screen(int brightness)
 {
   static int image_index = 0;
-  static int sequence[] = {
-      SNOWMAN, 
-      SNOWMAN,
-      YELLOW_J,
-      YELLOW_O,
-      YELLOW_Y,
-      YELLOW_E,
-      YELLOW_U,
-      YELLOW_X,
-      PRESENT,
-      PRESENT,
-      BLUE_N,
-      BLUE_O,
-      BLUE_E,
-      BLUE_L,
-      LUTIN,
-      LUTIN,
-      RED_B,
-      RED_S,
-      RED_P,
-      PIKA,
-      PIKA,
-      GREEN_A,
-      GREEN_C,
-      GREEN_T,
-      GREEN_I,
-      GREEN_V,
-      GREEN_A,
-      GREEN_T,
-      GREEN_E,
-      GREEN_U,
-      GREEN_R
-    };
 
-  int image_num = sequence[image_index];
+  int image_num = screen_sequence[image_index];
   int r, g, b;
 
   screen.setBrightness(brightness);
@@ -103,7 +72,7 @@ void run_screen(int brightness)
   }
   screen.show();
   
-  image_index = ( image_index + 1 ) % (sizeof(sequence) / sizeof(int)) ;
+  image_index = ( image_index + 1 ) % (sizeof(screen_sequence) / sizeof(int)) ;
 }
 
 void run_contout(int brightness)
